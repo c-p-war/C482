@@ -60,6 +60,7 @@ public class ModifyProductController implements Initializable {
     private TableColumn<Object, Object> AssocPartsTableColumnPrice;
     @FXML
     private TextField ModifyProductTxtFieldSearch;
+
     /**
      * Returns matching parts from the ModifyProduct part-search feature
      */
@@ -129,6 +130,7 @@ public class ModifyProductController implements Initializable {
 
     /**
      * Saves an updated product. Implements field restrictions and handles errors.
+     *
      * @param actionEvent Emitted from the ModifyProduct screen when the 'Save' button is clicked
      */
     public void modifyProductSaveBtnClicked(ActionEvent actionEvent) throws IOException {
@@ -177,6 +179,7 @@ public class ModifyProductController implements Initializable {
 
     /**
      * Exits the ModifyProduct screen and returns the user to the MainScreen
+     *
      * @param actionEvent Emitted from the ModifyProduct screen when the 'Exit' button is clicked
      */
     public void modifyProductCancelBtnClicked(ActionEvent actionEvent) throws IOException {

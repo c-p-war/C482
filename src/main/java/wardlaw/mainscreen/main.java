@@ -14,6 +14,7 @@ import java.io.IOException;
 public class main extends Application {
     /**
      * The start method initializes the fxml file MainScreen.fxml
+     *
      * @param stage
      */
     @Override
@@ -27,6 +28,7 @@ public class main extends Application {
 
     /**
      * The main method populates mock-data
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -38,9 +40,9 @@ public class main extends Application {
         Inventory.addPart(chain);
         Part gear = new Outsourced(4, "Gear", 41.50, 10, 1, 6, "Stingray LLC");
         Inventory.addPart(gear);
-        Product unicycle = new Product(1, "Unicycle", 500.00, 5,1,5);
+        Product unicycle = new Product(1, "Unicycle", 500.00, 5, 1, 5);
         Inventory.addProduct(unicycle);
-        Product tandem = new Product(2, "Tandem", 1250.00, 3,1,4);
+        Product tandem = new Product(2, "Tandem", 1250.00, 3, 1, 4);
         Inventory.addProduct(tandem);
         launch();
     }

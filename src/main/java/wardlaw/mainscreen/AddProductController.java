@@ -24,6 +24,9 @@ import java.util.ResourceBundle;
 
 /**
  * Handles all elements on the AddProduct screen
+ * <p><b>
+ * FUTURE ENHANCEMENT: Copy a 'template' of another PRODUCT from the INVENTORY. This would speed up the creation of complex products that have a large number of associated parts
+ * </b></p>
  */
 public class AddProductController implements Initializable {
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
@@ -103,6 +106,7 @@ public class AddProductController implements Initializable {
             AssocPartsTable.setItems(associatedParts);
         }
     }
+
     /**
      * Removes a selected part from the AssocParts table in the ModifyProduct screen
      */
@@ -125,8 +129,10 @@ public class AddProductController implements Initializable {
             }
         }
     }
+
     /**
      * Saves a new product. Implements field restrictions and handles errors.
+     *
      * @param actionEvent Emitted from the AddProduct screen when the 'Save' button is clicked
      */
     public void addProductSaveBtnClicked(ActionEvent actionEvent) throws IOException {
@@ -167,8 +173,10 @@ public class AddProductController implements Initializable {
             alert.showAndWait();
         }
     }
+
     /**
      * Exits the AddProduct screen and returns the user to the MainScreen
+     *
      * @param actionEvent Emitted from the AddProduct screen when the 'Exit' button is clicked
      */
     public void addProductCancelBtnClicked(ActionEvent actionEvent) throws IOException {
@@ -178,6 +186,7 @@ public class AddProductController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
     /**
      * Populates the AddProduct TextFields, AllPartsTable, and AssocParts tables
      */

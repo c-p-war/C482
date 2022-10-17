@@ -66,8 +66,8 @@ public class ModifyPartController implements Initializable {
     }
 
     /**
-     *
      * Saves an updated part. Implements field restrictions and handles errors.
+     *
      * @param actionEvent Emitted from the ModifyPart screen when the 'Save' button is clicked.
      */
     public void modifyPartSaveBtnClicked(ActionEvent actionEvent) throws IOException {
@@ -106,9 +106,9 @@ public class ModifyPartController implements Initializable {
     }
 
     /**
-     *
-     /**
+     * /**
      * Exits the ModifyPart screen and returns the user to the MainScreen
+     *
      * @param actionEvent Emitted from the ModifyPart screen when the 'Cancel' button is clicked
      */
     public void modifyPartCancelBtnClicked(ActionEvent actionEvent) throws IOException {

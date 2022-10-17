@@ -28,8 +28,14 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
     public static Part selectedPart;
     public static Product selectedProduct;
-    public static Part getSelectedPart(){return selectedPart;}
-    public static Product getSelectedProduct(){return selectedProduct;}
+
+    public static Part getSelectedPart() {
+        return selectedPart;
+    }
+
+    public static Product getSelectedProduct() {
+        return selectedProduct;
+    }
 
     @FXML
     public Button MainPartsAddBtn;
@@ -78,8 +84,8 @@ public class MainController implements Initializable {
         ObservableList<Part> allParts = Inventory.getAllParts();
         ObservableList<Part> matchingParts = FXCollections.observableArrayList();
 
-        for (Part part : allParts){
-            if(String.valueOf(part.getId()).contains(searchInput) || part.getName().toLowerCase().contains(searchInput)){
+        for (Part part : allParts) {
+            if (String.valueOf(part.getId()).contains(searchInput) || part.getName().toLowerCase().contains(searchInput)) {
                 matchingParts.add(part);
             }
         }
@@ -96,6 +102,7 @@ public class MainController implements Initializable {
 
     /**
      * Navigates to 'AddPart.fxml' on click
+     *
      * @param actionEvent Emitted from the MainScreen when the Parts 'Add' button is clicked
      */
     public void mainPartsAddBtnClicked(ActionEvent actionEvent) throws IOException {
@@ -108,11 +115,12 @@ public class MainController implements Initializable {
 
     /**
      * Navigates to 'ModifyPart.fxml' on click
+     *
      * @param actionEvent Emitted from MainScreen when the Parts 'Modify' button is clicked
      */
     public void mainPartsModifyBtnClicked(ActionEvent actionEvent) throws IOException {
         selectedPart = MainPartsTable.getSelectionModel().getSelectedItem();
-        if (selectedPart == null){
+        if (selectedPart == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Modify Error");
             alert.setContentText("No part selected \nTry again");
@@ -131,18 +139,18 @@ public class MainController implements Initializable {
      */
     public void mainPartsDeleteBtnClicked() {
         selectedPart = MainPartsTable.getSelectionModel().getSelectedItem();
-        if (selectedPart == null){
+        if (selectedPart == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Delete Error");
             alert.setContentText("No part selected \nTry again");
             alert.showAndWait();
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirm");
             alert.setHeaderText("Are you sure you want to delete this part?");
             alert.setContentText("Ok -> Delete Product \n\nCancel -> Keep Product");
             Optional<ButtonType> response = alert.showAndWait();
-            if (response.isPresent() && response.get() == ButtonType.OK){
+            if (response.isPresent() && response.get() == ButtonType.OK) {
                 Inventory.deletePart(selectedPart);
             }
         }
@@ -156,8 +164,8 @@ public class MainController implements Initializable {
         ObservableList<Product> allProducts = Inventory.getAllProducts();
         ObservableList<Product> matchingProducts = FXCollections.observableArrayList();
 
-        for (Product product : allProducts){
-            if(String.valueOf(product.getId()).contains(searchInput) || product.getName().toLowerCase().contains(searchInput)){
+        for (Product product : allProducts) {
+            if (String.valueOf(product.getId()).contains(searchInput) || product.getName().toLowerCase().contains(searchInput)) {
                 matchingProducts.add(product);
             }
         }
@@ -173,6 +181,7 @@ public class MainController implements Initializable {
 
     /**
      * Navigates to 'AddProduct.fxml' on click
+     *
      * @param actionEvent Emitted from the MainScreen when the Products 'Add' button is clicked
      */
     public void mainProductsAddBtnClicked(ActionEvent actionEvent) throws IOException {
@@ -185,11 +194,12 @@ public class MainController implements Initializable {
 
     /**
      * Navigates to 'ModifyProduct.fxml' on click
+     *
      * @param actionEvent Emitted from the MainScreen when the Products 'Modify' button is clicked
      */
     public void mainProductsModifyBtnClicked(ActionEvent actionEvent) throws IOException {
         selectedProduct = MainProductTable.getSelectionModel().getSelectedItem();
-        if  (selectedProduct == null){
+        if (selectedProduct == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Modify Error");
             alert.setContentText("No Product selected \nTry again");
@@ -209,7 +219,7 @@ public class MainController implements Initializable {
     public void mainProductsDeleteBtnClicked() {
         selectedProduct = MainProductTable.getSelectionModel().getSelectedItem();
         System.out.println(selectedProduct.getAllAssociatedParts());
-        if (selectedProduct == null){
+        if (selectedProduct == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Delete Error");
             alert.setContentText("No Product selected \nTry again");
@@ -226,7 +236,7 @@ public class MainController implements Initializable {
             alert.setHeaderText("Are you sure you want to delete this product?");
             alert.setContentText("Ok -> Delete Product \n\nCancel -> Keep Product");
             Optional<ButtonType> response = alert.showAndWait();
-            if (response.isPresent() && response.get() == ButtonType.OK){
+            if (response.isPresent() && response.get() == ButtonType.OK) {
                 Inventory.deleteProduct(selectedProduct);
             }
         }
@@ -234,6 +244,7 @@ public class MainController implements Initializable {
 
     /**
      * Exits the application
+     *
      * @param actionEvent Emitted from the MainScreen when the 'Exit' button is clicked
      */
     public void mainExitBtnClicked(ActionEvent actionEvent) {
