@@ -22,6 +22,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Handles all elements on the MainScreen
+ */
 public class MainController implements Initializable {
     public static Part selectedPart;
     public static Product selectedProduct;
@@ -67,6 +70,9 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Object, Object> ColumnProductPrice;
 
+    /**
+     * Returns matching parts from the MainScreen part-search feature
+     */
     public void mainPartsSearchClicked() {
         String searchInput = MainPartSearchField.getText();
         ObservableList<Part> allParts = Inventory.getAllParts();
@@ -87,6 +93,11 @@ public class MainController implements Initializable {
         }
 
     }
+
+    /**
+     * Navigates to 'AddPart.fxml' on click
+     * @param actionEvent Emitted from the MainScreen when the Parts 'Add' button is clicked
+     */
     public void mainPartsAddBtnClicked(ActionEvent actionEvent) throws IOException {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AddPart.fxml")));
         Scene scene = new Scene(parent);
@@ -95,6 +106,10 @@ public class MainController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Navigates to 'ModifyPart.fxml' on click
+     * @param actionEvent Emitted from MainScreen when the Parts 'Modify' button is clicked
+     */
     public void mainPartsModifyBtnClicked(ActionEvent actionEvent) throws IOException {
         selectedPart = MainPartsTable.getSelectionModel().getSelectedItem();
         if (selectedPart == null){
@@ -111,6 +126,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Deletes a selected part when clicked
+     */
     public void mainPartsDeleteBtnClicked() {
         selectedPart = MainPartsTable.getSelectionModel().getSelectedItem();
         if (selectedPart == null){
@@ -130,6 +148,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Returns matching products from the MainScreen product-search feature
+     */
     public void mainProductsSearchClicked() {
         String searchInput = MainProductSearchField.getText();
         ObservableList<Product> allProducts = Inventory.getAllProducts();
@@ -150,6 +171,10 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Navigates to 'AddProduct.fxml' on click
+     * @param actionEvent Emitted from the MainScreen when the Products 'Add' button is clicked
+     */
     public void mainProductsAddBtnClicked(ActionEvent actionEvent) throws IOException {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AddProduct.fxml")));
         Scene scene = new Scene(parent);
@@ -158,6 +183,10 @@ public class MainController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Navigates to 'ModifyProduct.fxml' on click
+     * @param actionEvent Emitted from the MainScreen when the Products 'Modify' button is clicked
+     */
     public void mainProductsModifyBtnClicked(ActionEvent actionEvent) throws IOException {
         selectedProduct = MainProductTable.getSelectionModel().getSelectedItem();
         if  (selectedProduct == null){
@@ -173,6 +202,10 @@ public class MainController implements Initializable {
             stage.show();
         }
     }
+
+    /**
+     * Deletes a selected Product when the 'Delete' button is clicked
+     */
     public void mainProductsDeleteBtnClicked() {
         selectedProduct = MainProductTable.getSelectionModel().getSelectedItem();
         System.out.println(selectedProduct.getAllAssociatedParts());
@@ -199,11 +232,18 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Exits the application
+     * @param actionEvent Emitted from the MainScreen when the 'Exit' button is clicked
+     */
     public void mainExitBtnClicked(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Populates main screen tables
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MainPartsTable.setItems(Inventory.getAllParts());

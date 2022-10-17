@@ -14,9 +14,11 @@ import model.Outsourced;
 import model.Part;
 
 import java.io.IOException;
-import java.text.NumberFormat;
 import java.util.Objects;
 
+/**
+ * Handles all elements on the AddPart screen
+ */
 public class AddPartController {
     @FXML
     private Label AddPartLabelDynamic;
@@ -40,18 +42,29 @@ public class AddPartController {
     @FXML
     private TextField AddPartTxtFieldDynamic;
 
+
+    /**
+     * Toggles dynamic label to read "Machine ID"
+     */
     public void addPartRadioInHouseClicked() {
         if (this.addPartToggleGroup.getSelectedToggle().equals(this.AddPartRadioInHouse)) {
             AddPartLabelDynamic.setText("Machine ID");
         }
     }
 
+    /**
+     * Toggles dynamic label to read "Company Name"
+     */
     public void addPartRadioOutsourcedClicked() {
         if (this.addPartToggleGroup.getSelectedToggle().equals(this.AddPartRadioOutsourced)) {
             AddPartLabelDynamic.setText("Company Name");
         }
     }
 
+    /**
+     * Saves a newly created part. Implements field restrictions and handles errors.
+     * @param actionEvent Emitted from the AddPart screen when the 'Save' button is clicked.
+     */
     public void addPartSaveBtnClicked(ActionEvent actionEvent) throws IOException {
         try {int id = (int) (Math.random() * 100);
         String name = AddPartTxtFieldName.getText();
@@ -94,6 +107,10 @@ public class AddPartController {
 
     }
 
+    /**
+     * Exits the AddPart screen and returns the user to the MainScreen
+     * @param actionEvent Emitted from the AddPart screen when the 'Cancel' button is clicked
+     */
     public void addPartCancelBtnClicked(ActionEvent actionEvent) throws IOException {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScreen.fxml")));
         Scene scene = new Scene(parent);

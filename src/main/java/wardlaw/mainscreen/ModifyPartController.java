@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.InHouse;
 import model.Inventory;
@@ -20,7 +19,9 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-
+/**
+ * Handles all elements on the ModifyPart screen
+ */
 public class ModifyPartController implements Initializable {
     @FXML
     private TextField ModifyPartTxtFieldId;
@@ -44,22 +45,31 @@ public class ModifyPartController implements Initializable {
     private Label ModifyPartLabelDynamic;
     public Part selectedPart;
     @FXML
-    private Label ModifyPartLabelID;
-    @FXML
     private TextField ModifyPartTxtFieldDynamic;
 
+    /**
+     * Toggles dynamic label to read 'Machine ID'
+     */
     public void modifyPartInHouseRadioClicked() {
         if (this.modifyPartToggleGroup.getSelectedToggle().equals(this.ModifyPartRadioInHouse)) {
             ModifyPartLabelDynamic.setText("Machine ID");
         }
     }
 
+    /**
+     * Toggles dynamic label to read 'Company Name'
+     */
     public void modifyPartOutsourcedRadioClicked() {
         if (this.modifyPartToggleGroup.getSelectedToggle().equals(this.ModifyPartRadioOutsourced)) {
             ModifyPartLabelDynamic.setText("Company Name");
         }
     }
 
+    /**
+     *
+     * Saves an updated part. Implements field restrictions and handles errors.
+     * @param actionEvent Emitted from the ModifyPart screen when the 'Save' button is clicked.
+     */
     public void modifyPartSaveBtnClicked(ActionEvent actionEvent) throws IOException {
         try {
             int id = Integer.parseInt(ModifyPartTxtFieldId.getText());
@@ -94,6 +104,13 @@ public class ModifyPartController implements Initializable {
             alert.showAndWait();
         }
     }
+
+    /**
+     *
+     /**
+     * Exits the ModifyPart screen and returns the user to the MainScreen
+     * @param actionEvent Emitted from the ModifyPart screen when the 'Cancel' button is clicked
+     */
     public void modifyPartCancelBtnClicked(ActionEvent actionEvent) throws IOException {
         System.out.println("Modify Part - Cancel btn clicked");
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScreen.fxml")));
@@ -103,6 +120,9 @@ public class ModifyPartController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Populates the ModifyPart TextFields
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         selectedPart = MainController.getSelectedPart();

@@ -8,7 +8,14 @@ import model.*;
 
 import java.io.IOException;
 
+/**
+ * This class creates the Inventory application. The javadoc files are located in /javadoc.
+ */
 public class main extends Application {
+    /**
+     * The start method initializes the fxml file MainScreen.fxml
+     * @param stage
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("/wardlaw/mainscreen/MainScreen.fxml"));
@@ -18,6 +25,10 @@ public class main extends Application {
         stage.show();
     }
 
+    /**
+     * The main method populates mock-data
+     * @param args
+     */
     public static void main(String[] args) {
         Part tire = new InHouse(1, "Tire", 72.00, 500, 1, 4, 1);
         Inventory.addPart(tire);

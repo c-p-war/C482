@@ -22,6 +22,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Handles all elements on the AddProduct screen
+ */
 public class AddProductController implements Initializable {
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     @FXML
@@ -57,6 +60,9 @@ public class AddProductController implements Initializable {
     @FXML
     private TableColumn<Object, Object> AllPartsTableColumnPrice;
 
+    /**
+     * Returns matching parts from the AddProduct part-search feature
+     */
     public void addProductSearchClicked() {
         String searchInput = AddProductTxtFieldSearch.getText();
         ObservableList<Part> allParts = Inventory.getAllParts();
@@ -77,6 +83,9 @@ public class AddProductController implements Initializable {
         }
     }
 
+    /**
+     * Adds a selected part from the AllParts table to the AssocParts table in the AddProduct screen
+     */
     public void addProductAddBtnClicked() {
         Part selectedPart = AllPartsTable.getSelectionModel().getSelectedItem();
         if (selectedPart == null) {
@@ -94,7 +103,9 @@ public class AddProductController implements Initializable {
             AssocPartsTable.setItems(associatedParts);
         }
     }
-
+    /**
+     * Removes a selected part from the AssocParts table in the ModifyProduct screen
+     */
     public void addProductRemoveBtnClicked() {
         Part selectedPart = AssocPartsTable.getSelectionModel().getSelectedItem();
         if (selectedPart == null) {
@@ -114,7 +125,10 @@ public class AddProductController implements Initializable {
             }
         }
     }
-
+    /**
+     * Saves a new product. Implements field restrictions and handles errors.
+     * @param actionEvent Emitted from the AddProduct screen when the 'Save' button is clicked
+     */
     public void addProductSaveBtnClicked(ActionEvent actionEvent) throws IOException {
         try {
             int id = (int) (Math.random() * 100);
@@ -153,7 +167,10 @@ public class AddProductController implements Initializable {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Exits the AddProduct screen and returns the user to the MainScreen
+     * @param actionEvent Emitted from the AddProduct screen when the 'Exit' button is clicked
+     */
     public void addProductCancelBtnClicked(ActionEvent actionEvent) throws IOException {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScreen.fxml")));
         Scene scene = new Scene(parent);
@@ -161,7 +178,9 @@ public class AddProductController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    /**
+     * Populates the AddProduct TextFields, AllPartsTable, and AssocParts tables
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         AllPartsTable.setItems(Inventory.getAllParts());

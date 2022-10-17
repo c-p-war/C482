@@ -16,11 +16,13 @@ import model.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.NumberFormat;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Handles all elements on the ModifyProduct screen
+ */
 public class ModifyProductController implements Initializable {
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     @FXML
@@ -58,7 +60,9 @@ public class ModifyProductController implements Initializable {
     private TableColumn<Object, Object> AssocPartsTableColumnPrice;
     @FXML
     private TextField ModifyProductTxtFieldSearch;
-
+    /**
+     * Returns matching parts from the ModifyProduct part-search feature
+     */
     public void modifyProductSearchClicked() {
         String searchInput = ModifyProductTxtFieldSearch.getText();
         ObservableList<Part> allParts = Inventory.getAllParts();
@@ -79,6 +83,9 @@ public class ModifyProductController implements Initializable {
         }
     }
 
+    /**
+     * Adds a selected part from the AllParts table to the AssocParts table in the ModifyProduct screen
+     */
     public void modifyProductAddBtnClicked() {
         Part selectedPart = AllPartsTable.getSelectionModel().getSelectedItem();
         if (selectedPart == null) {
@@ -97,6 +104,9 @@ public class ModifyProductController implements Initializable {
         }
     }
 
+    /**
+     * Removes a selected part from the AssocParts table in the ModifyProduct screen
+     */
     public void modifyProductRemoveBtnClicked() {
         Part selectedPart = AssocPartsTable.getSelectionModel().getSelectedItem();
         if (selectedPart == null) {
@@ -117,6 +127,10 @@ public class ModifyProductController implements Initializable {
         }
     }
 
+    /**
+     * Saves an updated product. Implements field restrictions and handles errors.
+     * @param actionEvent Emitted from the ModifyProduct screen when the 'Save' button is clicked
+     */
     public void modifyProductSaveBtnClicked(ActionEvent actionEvent) throws IOException {
         try {
             int id = Integer.parseInt(ModifyProductTxtFieldId.getText());
@@ -161,6 +175,10 @@ public class ModifyProductController implements Initializable {
         }
     }
 
+    /**
+     * Exits the ModifyProduct screen and returns the user to the MainScreen
+     * @param actionEvent Emitted from the ModifyProduct screen when the 'Exit' button is clicked
+     */
     public void modifyProductCancelBtnClicked(ActionEvent actionEvent) throws IOException {
         System.out.println("Modify Product - Cancel btn clicked");
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScreen.fxml")));
@@ -170,6 +188,9 @@ public class ModifyProductController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Populates the ModifyProduct TextFields, AllPartsTable, and AssocParts tables
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         selectedProduct = MainController.getSelectedProduct();
