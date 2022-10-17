@@ -9,7 +9,13 @@ import model.*;
 import java.io.IOException;
 
 /**
- * This class creates the Inventory application. The javadoc files are located in /javadoc.
+ * This class creates the Inventory application.
+ *
+ * <b>The javadoc files are located in /javadoc.</b>
+ *
+ * <p><b>
+ * FUTURE ENHANCEMENT: Ability to copy a 'template' of another product from the inventory during product creation. This would speed up the creation of complex products that have a large number of associated parts.
+ * </b></p>
  */
 public class main extends Application {
     /**

@@ -24,9 +24,6 @@ import java.util.ResourceBundle;
 
 /**
  * Handles all elements on the AddProduct screen
- * <p><b>
- * FUTURE ENHANCEMENT: Copy a 'template' of another PRODUCT from the INVENTORY. This would speed up the creation of complex products that have a large number of associated parts
- * </b></p>
  */
 public class AddProductController implements Initializable {
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
