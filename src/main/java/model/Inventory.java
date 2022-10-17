@@ -1,56 +1,112 @@
 package model;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Inventory class - Used to manage exiting Parts and Products
+ */
 public class Inventory {
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
-
-    public static void addPart(Part newPart){
+    /**
+     * Adds part to inventory
+     *
+     * @param newPart The part to add
+     */
+    public static void addPart(Part newPart) {
         allParts.add(newPart);
     }
 
-    public static void addProduct(Product newProduct){
+    /**
+     * Adds product to inventory
+     *
+     * @param newProduct The product to add
+     */
+    public static void addProduct(Product newProduct) {
         allProducts.add(newProduct);
     }
 
-    public Part lookupPart(int partId){
+    /**
+     * Retrieves part based on id
+     *
+     * @param partId A parts assigned identification number
+     */
+    public Part lookupPart(int partId) {
         return null;
     }
 
-    public Product lookupProduct (int productId){
+    /**
+     * Retrieves product based on id
+     *
+     * @param productId A products assigned identification number
+     */
+    public Product lookupProduct(int productId) {
         return null;
     }
 
-    public ObservableList lookupPart (String partName){
+    /**
+     * Retrieves part based on name
+     *
+     * @param partName A parts assigned name
+     */
+    public ObservableList lookupPart(String partName) {
         return null;
     }
 
-    public ObservableList lookupProduct (String productName){
+    /**
+     * Retrieves product based on name
+     *
+     * @param productName A products assigned name
+     */
+    public ObservableList lookupProduct(String productName) {
         return null;
     }
 
-    public void updatePart (int index, Part selectedPart){
+    /**
+     * Updates part based on index
+     *
+     * @param index        Location of selected part
+     * @param selectedPart Desired selection
+     */
+    public void updatePart(int index, Part selectedPart) {
         allParts.set(index, selectedPart);
 
     }
 
-    public void updateProduct (int index, Product newProduct){
+    /**
+     * Updates product based on index
+     *
+     * @param index      Location of selected product
+     * @param newProduct Desired selection
+     */
+    public void updateProduct(int index, Product newProduct) {
         allProducts.set(index, newProduct);
     }
 
-    public static boolean deletePart(Part selectedPart){
-      if(allParts.contains(selectedPart)){
-          allParts.remove(selectedPart);
-          return true;
-      } else {
-          return false;
-      }
+    /**
+     * Removes selected part from allParts
+     *
+     * @param selectedPart Part to be removed
+     */
+    public static boolean deletePart(Part selectedPart) {
+        if (allParts.contains(selectedPart)) {
+            allParts.remove(selectedPart);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public static boolean deleteProduct(Product selectedProduct){
-        if(allProducts.contains(selectedProduct)){
+    /**
+     * Removes selected product from allProducts
+     *
+     * @param selectedProduct Product to be removed
+     */
+    public static boolean deleteProduct(Product selectedProduct) {
+        if (allProducts.contains(selectedProduct)) {
             allProducts.remove(selectedProduct);
             return true;
         } else {
@@ -58,11 +114,17 @@ public class Inventory {
         }
     }
 
-    public static ObservableList<Part> getAllParts(){
+    /**
+     * Retrieves all parts from inventory
+     */
+    public static ObservableList<Part> getAllParts() {
         return allParts;
     }
 
-    public static ObservableList<Product> getAllProducts(){
+    /**
+     * Retrieves all products from inventory
+     */
+    public static ObservableList<Product> getAllProducts() {
         return allProducts;
     }
 }
